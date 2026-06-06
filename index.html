@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Primer Amor - Ropa y Accesorios para Bebés</title>
-    <!-- ✅ AHORA IGUAL QUE VOS: manifest.json -->
+    <!-- ✅ NOMBRE CORRECTO, IGUAL QUE VOS -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#B497D6">
     <meta name="description" content="Mi Primer Amor - Ropa y accesorios para bebés en Venado Tuerto, Santa Fe.">
@@ -76,30 +76,6 @@
             margin: 0 auto;
         }
 
-        /* REPRODUCTOR DE RADIO */
-        .radio {
-            background-color: #f3eefc;
-            margin: 20px 15px;
-            padding: 18px 15px;
-            border-radius: 16px;
-            text-align: center;
-            color: #7a6799;
-            box-shadow: 0 2px 8px rgba(180, 151, 214, 0.1);
-        }
-
-        .radio h3 {
-            font-size: 17px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .radio audio {
-            width: 100%;
-            max-width: 400px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
         /* BOTONES DE CONTACTO */
         .contacto {
             padding: 10px 20px 20px;
@@ -135,6 +111,30 @@
             color: white;
         }
 
+        /* ✅ REPRODUCTOR DE RADIO: AHORA AL FINAL, COMO AGREGADO */
+        .radio {
+            background-color: #f3eefc;
+            margin: 20px 15px;
+            padding: 15px;
+            border-radius: 16px;
+            text-align: center;
+            color: #7a6799;
+            box-shadow: 0 2px 8px rgba(180, 151, 214, 0.1);
+        }
+
+        .radio h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .radio audio {
+            width: 100%;
+            max-width: 400px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
         <!-- PIE DE PÁGINA -->
         .pie {
             background-color: #f3eefc;
@@ -161,16 +161,7 @@
         <p>El lugar más tierno para vestir y mimar a tu bebé. Calidad, amor y los mejores diseños, pensados especialmente para ellos.</p>
     </section>
 
-    <!-- 📻 REPRODUCTOR DE LA RADIO - TAL CUAL LO QUERÍAS -->
-    <section class="radio">
-        <h3>📻 Escuchar 107 - La Gota</h3>
-        <audio controls playsinline style="width:100%">
-          <source src="https://uk23freenew.listen2myradio.com/live.mp3?typeportmount=ice_12241_stream_950926445" type="audio/mpeg">
-          Tu navegador no puede reproducir la radio.
-        
-    </section>
-
-    <!-- TUS CONTACTOS -->
+    <!-- TUS CONTACTOS (PRIMERO, LO PRINCIPAL) -->
     <section class="contacto">
         <a href="https://wa.me/5493462388789" target="_blank" class="boton btn-whatsapp">
             🟢 Escribir por WhatsApp
@@ -180,19 +171,37 @@
         </a>
     </section>
 
+    <!-- ✅ REPRODUCTOR DE LA RADIO: AL FINAL, COMO ÚLTIMA OPCIÓN -->
+    <section class="radio">
+        <h3>📻 Escuchar 107 - La Gota</h3>
+        <audio controls playsinline style="width:100%">
+          <source src="https://uk23freenew.listen2myradio.com/live.mp3?typeportmount=ice_12241_stream_950926445" type="audio/mpeg">
+          Tu navegador no puede reproducir la radio.
+        
+    </section>
+
     <footer class="pie">
         &copy; 2026 Mi Primer Amor • Ropa y accesorios para bebés • Todos los derechos reservados
     </footer>
 
-<!-- ✅ LO QUE FALTABA PARA QUE SALGA EL BOTÓN DE INSTALAR -->
+<!-- ✅ CÓDIGO EXACTO PARA QUE APAREZCA EL CARTEL DE INSTALAR -->
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('Listo para instalar ✅', reg))
-      .catch(err => console.log('Error ❌', err));
+    navigator.serviceWorker.register('/sw.js');
   });
 }
+
+// Esto es lo que faltaba para activar el aviso de instalación
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // AQUÍ SE ACTIVA EL CARTELITO / BOTÓN DE INSTALAR
+  setTimeout(() => {
+    if (deferredPrompt) deferredPrompt.prompt();
+  }, 1500);
+});
 </script>
 
 </body>
