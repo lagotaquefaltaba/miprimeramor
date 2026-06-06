@@ -57,7 +57,6 @@
         .btn-whatsapp {background: #25d366; color: white;}
         .btn-facebook {background: #1877f2; color: white;}
 
-        /* RADIO: AL FINAL DE TODO, COMO ÚLTIMA SECCIÓN */
         .radio {
             background: #f3eefc;
             margin: 20px 15px;
@@ -83,7 +82,7 @@
 <body>
 
     <header class="cabecera">
-        <img src="imagenes/logo-principal.png" alt="Mi Primer Amor - Ropa y accesorios para bebés" class="logo">
+        <img src="imagenes/logo-principal.jpg" alt="Mi Primer Amor - Ropa y accesorios para bebés" class="logo">
         <p class="subtitulo-tienda">Ropa y accesorios para bebés</p>
         <p class="ubicacion">📍 Venado Tuerto, Santa Fe | 📞 3462 38-8789</p>
     </header>
@@ -121,8 +120,8 @@ window.addEventListener('beforeinstallprompt', e => {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Service Worker listo'))
-      .catch(err => console.error('Error en Service Worker', err));
+      .then(reg => console.log('Service Worker registrado'))
+      .catch(err => console.error('Error al registrar', err));
   });
 }
 </script>
