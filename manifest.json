@@ -1,7 +1,7 @@
 {
   "name": "Mi Primer Amor - Ropa de Bebés",
   "short_name": "Mi Primer Amor",
-  "description": "Tienda de ropa y accesorios para bebés en Venado Tuerto, Santa Fe",
+  "description": "Tienda de ropa y accesorios para bebés en Venado Tuerto",
   "start_url": "/miprimeramor/",
   "scope": "/miprimeramor/",
   "display": "standalone",
