@@ -1,17 +1,19 @@
-const CACHE_NAME = 'mi-primer-amor-v3';
-const ARCHIVOS_A_CACHEAR = [
+const CACHE_NAME = 'mi-primer-amor-v1';
+const ARCHIVOS = [
   '/miprimeramor/',
   '/miprimeramor/index.html',
   '/miprimeramor/manifest.json',
   '/miprimeramor/imagenes/logo-principal.png'
 ];
 
-self.addEventListener('install, install', e => {
-  e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ARCHIVOS_A_CACHEAR)));
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ARCHIVOS)));
 });
 
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(nombres => Promise.all(nombres.filter(n => n !== CACHE_NAME).map(n => caches.delete(n)))));
+  e.waitUntil(caches.keys().then(nombres => 
+    Promise.all(nombres.filter(n => n !== CACHE_NAME).map(n => caches.delete(n)))
+  ));
 });
 
 self.addEventListener('fetch', e => {
