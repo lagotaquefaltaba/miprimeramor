@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Primer Amor - Ropa y Accesorios para Bebés</title>
-    <link rel="manifest" href="manifest.webmanifest">
+    <!-- ✅ AHORA IGUAL QUE VOS: manifest.json -->
+    <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#B497D6">
     <meta name="description" content="Mi Primer Amor - Ropa y accesorios para bebés en Venado Tuerto, Santa Fe.">
     <style>
@@ -182,6 +183,17 @@
     <footer class="pie">
         &copy; 2026 Mi Primer Amor • Ropa y accesorios para bebés • Todos los derechos reservados
     </footer>
+
+<!-- ✅ LO QUE FALTABA PARA QUE SALGA EL BOTÓN DE INSTALAR -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('Listo para instalar ✅', reg))
+      .catch(err => console.log('Error ❌', err));
+  });
+}
+</script>
 
 </body>
 </html>
