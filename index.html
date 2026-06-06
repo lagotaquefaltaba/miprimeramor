@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-Ar">
 <head>
     <meta charset="UTF-8">
@@ -41,21 +41,33 @@
         .bienvenida p {font-size: 16px; color: #5a4b6e; max-width: 500px; margin: auto;}
 
         .contacto {padding: 10px 20px; max-width: 450px; margin: 0 auto;}
+        
+        /* Estilos generales de los botones */
         .boton {
             display: block;
             text-decoration: none;
             text-align: center;
             padding: 15px;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 17px;
             margin: 12px 0;
             transition: 0.3s;
             border: none;
+            cursor: pointer;
+            width: 100%;
         }
         .boton:hover {transform: scale(1.03); box-shadow: 0 4px 12px rgba(0,0,0,0.1);}
         .btn-whatsapp {background: #25d366; color: white;}
         .btn-facebook {background: #1877f2; color: white;}
+        
+        /* 🟡 BOTÓN DE INSTALAR IGUAL AL DE LA CAPTURA 🟡 */
+        .btn-instalar {
+            background: #f1c40f; 
+            color: black;
+            display: none; /* Se oculta por defecto y aparece solo si se puede instalar */
+            text-transform: uppercase;
+        }
 
         .radio {
             background: #f3eefc;
@@ -95,6 +107,8 @@
     <section class="contacto">
         <a href="https://wa.me/5493462388789" target="_blank" class="boton btn-whatsapp">🟢 Escribir por WhatsApp</a>
         <a href="https://www.facebook.com/share/1DrzWW31kQ/" target="_blank" class="boton btn-facebook">📘 Seguinos en Facebook</a>
+        
+        <button id="botonInstalar" class="boton btn-instalar">📲 INSTALAR <br> MI PRIMER AMOR</button>
     </section>
 
     <section class="radio">
@@ -110,12 +124,42 @@
     </footer>
 
 <script>
-// Registro idéntico al de tu otro repositorio, pero apuntando a service-worker.js
+let deferredPrompt;
+const btnInstalar = document.getElementById('botonInstalar');
+
+// Captura el evento nativo de Chrome para activar tu botón amarillo
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Muestra el botón amarillo en la pantalla
+    btnInstalar.style.display = 'block'; 
+});
+
+// Programamos lo que pasa cuando el cliente toca tu botón amarillo
+btnInstalar.addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            btnInstalar.style.display = 'none';
+        }
+        deferredPrompt = null;
+    }
+});
+
+// Oculta el botón si la app ya se instaló con éxito
+window.addEventListener('appinstalled', () => {
+    btnInstalar.style.display = 'none';
+    deferredPrompt = null;
+    console.log('App instalada con éxito');
+});
+
+// Registro del Service Worker simplificado
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./service-worker.js')
-      .then(reg => console.log('Service Worker Registrado'))
-      .catch(err => console.error('Error', err));
+      .then(reg => console.log('Service Worker Activo'))
+      .catch(err => console.error('Error Service Worker', err));
   });
 }
 </script>
