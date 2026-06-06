@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es-Ar">
 <head>
     <meta charset="UTF-8">
@@ -75,9 +75,33 @@
             margin: 0 auto;
         }
 
+        /* REPRODUCTOR DE RADIO */
+        .radio {
+            background-color: #f3eefc;
+            margin: 20px 15px;
+            padding: 18px 15px;
+            border-radius: 16px;
+            text-align: center;
+            color: #7a6799;
+            box-shadow: 0 2px 8px rgba(180, 151, 214, 0.1);
+        }
+
+        .radio h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .radio audio {
+            width: 100%;
+            max-width: 400px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
         /* BOTONES DE CONTACTO */
         .contacto {
-            padding: 10px 20px 40px;
+            padding: 10px 20px 20px;
             max-width: 450px;
             margin: 0 auto;
         }
@@ -123,7 +147,7 @@
 </head>
 <body>
 
-    <!-- CABECERA CON TU LOGO HERMOSO -->
+    <!-- CABECERA CON TU LOGO -->
     <header class="cabecera">
         <img src="imagenes/logo-principal.png" alt="Mi Primer Amor - Ropa y accesorios para bebés" class="logo">
         <p class="subtitulo-tienda">Ropa y accesorios para bebés</p>
@@ -136,7 +160,16 @@
         <p>El lugar más tierno para vestir y mimar a tu bebé. Calidad, amor y los mejores diseños, pensados especialmente para ellos.</p>
     </section>
 
-    <!-- TUS CONTACTOS YA CARGADOS -->
+    <!-- 📻 REPRODUCTOR DE LA RADIO - TAL CUAL LO QUERÍAS -->
+    <section class="radio">
+        <h3>📻 Escuchar 107 - La Gota</h3>
+        <audio controls playsinline style="width:100%">
+          <source src="https://uk23freenew.listen2myradio.com/live.mp3?typeportmount=ice_12241_stream_950926445" type="audio/mpeg">
+          Tu navegador no puede reproducir la radio.
+        
+    </section>
+
+    <!-- TUS CONTACTOS -->
     <section class="contacto">
         <a href="https://wa.me/5493462388789" target="_blank" class="boton btn-whatsapp">
             🟢 Escribir por WhatsApp
