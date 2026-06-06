@@ -98,13 +98,12 @@
         <a href="https://www.facebook.com/share/1DrzWW31kQ/" target="_blank" class="boton btn-facebook">📘 Seguinos en Facebook</a>
     </section>
 
-    <!-- ✅ REPRODUCTOR AQUÍ: LO ÚLTIMO, ABAJO DE TODO -->
     <section class="radio">
         <h3>📻 Escuchar 107 - La Gota</h3>
         <audio controls playsinline>
           <source src="https://uk23freenew.listen2myradio.com/live.mp3?typeportmount=ice_12241_stream_950926445" type="audio/mpeg">
           Tu navegador no admite audio.
-        
+        </audio>
     </section>
 
     <footer class="pie">
@@ -121,7 +120,9 @@ window.addEventListener('beforeinstallprompt', e => {
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js');
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Service Worker listo'))
+      .catch(err => console.error('Error en Service Worker', err));
   });
 }
 </script>
