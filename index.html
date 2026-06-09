@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" sizes="192x192" href="https://i.imgur.com/xfo0NXF.jpeg">
+<link rel="icon" sizes="512x512" href="https://i.imgur.com/xfo0NXF.jpeg">
+<link rel="apple-touch-icon" href="https://i.imgur.com/xfo0NXF.jpeg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Primer Amor</title>
+
+<link rel="manifest" href="manifest.json">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js');
+  });
+}
+</script>
+
+<meta name="theme-color" content="#07142e">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#07142e;padding:10px;padding-bottom:90px;}
+.contenedor{max-width:450px;margin:auto;background:linear-gradient(180deg,#07142e,#0f2a55,#07142e);border-radius:24px;box-shadow:0 15px 35px rgba(0,0,0,0.5);padding:25px;text-align:center;border:1px solid rgba(255,255,255,0.05)}
+.logo-radio{width:100%;max-width:260px;height:auto;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.6);margin-bottom:25px;border:3px solid #00d2ff;transition:transform 0.3s ease}
+.logo-radio:hover{transform:scale(1.02)}
+h1{color:#fff;font-size:24px;margin-bottom:25px;letter-spacing:1px;text-transform:uppercase;text-shadow:0 2px 4px rgba(0,0,0,0.5)}
+
+/* ✨ REPRODUCTOR: COMPACTO Y FUNCIONAL */
+.reproductor-caja{
+    background:rgba(255,255,255,0.03);
+    border-radius:16px;
+    padding:8px 12px;
+    margin-top:25px;
+    border:1px solid rgba(0,210,255,0.2);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.reproductor-caja div.cstrEmbed {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 40px !important;
+    transform: scale(0.85);
+    transform-origin: center center;
+    margin: 0 auto !important;
+}
+.reproductor-caja .cstrEmbed a {
+    display: inline-block !important;
+    color: #43546c !important;
+    font-size: 8px !important;
+    text-decoration: none !important;
+    margin: 4px 2px 0 2px !important;
+    opacity: 0.4;
+}
+
+.boton{display:flex;align-items:center;justify-content:center;width:100%;padding:14px;margin-bottom:12px;border-radius:14px;color:#fff;text-decoration:none;font-size:16px;font-weight:bold;transition:all 0.2s ease;box-shadow:0 4px 10px rgba(0,0,0,0.2);border:none;cursor:pointer}
+.wp{background:#25d366}
+.fb{background:#1877f2}
+
+.texto-ayuda{color:#8a99ad;font-size:12px;margin-top:20px;line-height:1.5;background:rgba(0,0,0,0.2);padding:12px;border-radius:10px}
+.boton-instalar-nuevo{display:none;position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:#ffcc00;color:#000;border:none;padding:15px 35px;font-size:15px;font-weight:bold;border-radius:50px;cursor:pointer;box-shadow:0 8px 20px rgba(255,204,0,0.4);z-index:9999;animation:latido 2s infinite;letter-spacing:1px;text-transform:uppercase}
+@keyframes latido{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.05);box-shadow:0 8px 25px rgba(255,204,0.6)}100%{transform:translateX(-50%) scale(1)}}
+</style>
+</head>
+<body>
+
+<div class="contenedor">
+    <img class="logo-radio" src="https://i.imgur.com/xfo0NXF.jpeg" alt="Logo">
+    <h1>Mi Primer Amor</h1>
+
+    <a class="boton wp" href="https://wa.me/5493462388789" target="_blank">Contacto WhatsApp</a>
+    <a class="boton fb" href="https://www.facebook.com/share/1DrzWW31kQ/" target="_blank">Facebook</a>
+
+    <div class="reproductor-caja">
+        <div data-type="newStreamPlayer" data-publicToken="4b88f7ad-1fbc-4827-adbb-ba6d98a799c3" data-theme="dark" data-color="00d2ff" data-channelId="" data-rendered="false" class="cstrEmbed">
+            <a href="https://www.caster.fm">Shoutcast Hosting</a> 
+            <a href="https://www.caster.fm">Stream Hosting</a> 
+            <a href="https://www.caster.fm">Radio Server Hosting</a>
+        </div>
+        <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+    </div>
+
+    <div class="texto-ayuda">
+        📱 Si estás entrando desde Facebook 👉 tocá los 3 puntitos de arriba y elegí "Abrir en navegador"<br>
+        👆 Si no te sale: andá a 3 puntitos → <b>"Agregar a pantalla de inicio"</b> 📲
+    </div>
+</div>
+
+<button id="botonInstalar" class="boton-instalar-nuevo">📲 INSTALAR APP</button>
+
+<script>
+let eventoInstalar;
+const botonInstalar = document.getElementById('botonInstalar');
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    eventoInstalar = e;
+    botonInstalar.style.display = 'block';
+});
+botonInstalar.addEventListener('click', async () => {
+    if (eventoInstalar) {
+        eventoInstalar.prompt();
+        const { outcome } = await eventoInstalar.userChoice;
+        if (outcome === 'accepted') {
+            botonInstalar.style.display = 'none';
+            eventoInstalar = null;
+        }
+    }
+});
+</script>
+
+</body>
+</html>
