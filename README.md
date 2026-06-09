@@ -1,2 +1,0 @@
-# miprimeramor
-ropa y accesorios
